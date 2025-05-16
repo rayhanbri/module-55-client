@@ -43,15 +43,23 @@ const Users = ({ userPromise }) => {
         fetch(`http://localhost:3000/users/${id}`,{
             method:'DELETE'
         })
-        .then(res => res.json)
+        .then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data.deletedCount){
+                const remainingUsers = users.filter(user => user._id !== id);
+                setUsers(remainingUsers)
+                console.log('after delete',data)
+            }
+            console.log(data.deletedCount)
+
+           
         })
     }
     return (
         <div>
             {/* add user  */}
             <div>
+                <h1>User:{users.length}</h1>
                 <form onSubmit={handleUsers}>
                     <input type="text" name="name" id="" required/>
                     <br />
