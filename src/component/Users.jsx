@@ -1,50 +1,61 @@
 import React, { use, useState } from 'react';
 
-const Users = ({userPromise}) => {
-     const initalUser  = use(userPromise);
-     const [users,setUsers] = useState(initalUser);
-     console.log(initalUser);
+const Users = ({ userPromise }) => {
+    const initalUser = use(userPromise);
+    const [users, setUsers] = useState(initalUser);
+    console.log(initalUser);
 
 
-    const handleUsers = e =>{
+    const handleUsers = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
-        const newUser = {name,email}
+        const newUser = { name, email }
         // console.log(newUser)
 
         // crate user in database 
-        fetch('http://localhost:3000/users',{
-            method:"POST",
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:3000/users', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
             },
             body: JSON.stringify(newUser)
         })
-        .then(res => res.json())
-        .then(data =>{
+            .then(res => res.json())
+            .then(data => {
 
-            console.log('data in data base ' ,data)
-            // datar modde insert id ache mane data successfully added 
-            if(data.insertedId){
-                newUser._id = data.insertedId;
-                const newUsers = [...users,newUser]
-                setUsers(newUsers)
+                console.log('data in data base ', data)
+                // datar modde insert id ache mane data successfully added 
+                if (data.insertedId) {
+                    newUser._id = data.insertedId;
+                    const newUsers = [...users, newUser]
+                    setUsers(newUsers)
 
-                alert('data added successfully');
-                e.target.reset();
-            }
+                    alert('data added successfully');
+                    e.target.reset();
+                }
+            })
+    }
+
+    const handleUserDelete = (id) =>{
+        console.log('delete kore daw',id)
+        fetch(`http://localhost:3000/users/${id}`,{
+            method:'DELETE'
+        })
+        .then(res => res.json)
+        .then(data => {
+            console.log(data)
         })
     }
     return (
         <div>
             {/* add user  */}
             <div>
-                <form  onSubmit={handleUsers}>
-                    <input type="text" name="name" id="" />
+                <form onSubmit={handleUsers}>
+                    <input type="text" name="name" id="" required/>
                     <br />
-                    <input type="email" name="email" id="" />
+                    <input type="email" name="email" id="" required/>
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
@@ -52,7 +63,11 @@ const Users = ({userPromise}) => {
             </div>
             <div>
                 {
-                    users.map (user => <p key={user._id}>{user.name}:{user.email}</p>)
+                    users.map(user =>
+                        <p key={user._id}>
+                            {user.name}:{user.email}
+                            <button onClick={()=>handleUserDelete(user._id)}>X</button>
+                        </p>)
                 }
             </div>
         </div>
