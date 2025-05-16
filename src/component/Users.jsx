@@ -39,22 +39,22 @@ const Users = ({ userPromise }) => {
             })
     }
 
-    const handleUserDelete = (id) =>{
-        console.log('delete kore daw',id)
-        fetch(`http://localhost:3000/users/${id}`,{
-            method:'DELETE'
+    const handleUserDelete = (id) => {
+        console.log('delete kore daw', id)
+        fetch(`http://localhost:3000/users/${id}`, {
+            method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount){
-                const remainingUsers = users.filter(user => user._id !== id);
-                setUsers(remainingUsers)
-                console.log('after delete',data)
-            }
-            console.log(data.deletedCount)
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    const remainingUsers = users.filter(user => user._id !== id);
+                    setUsers(remainingUsers)
+                    console.log('after delete', data)
+                }
+                console.log(data.deletedCount)
 
-           
-        })
+
+            })
     }
     return (
         <div>
@@ -62,9 +62,9 @@ const Users = ({ userPromise }) => {
             <div>
                 <h1>User:{users.length}</h1>
                 <form onSubmit={handleUsers}>
-                    <input type="text" name="name" id="" required/>
+                    <input type="text" name="name" id="" required />
                     <br />
-                    <input type="email" name="email" id="" required/>
+                    <input type="email" name="email" id="" required />
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
@@ -75,8 +75,9 @@ const Users = ({ userPromise }) => {
                     users.map(user =>
                         <p key={user._id}>
                             {user.name}:{user.email}
-                            <Link to={`users/${user._id}`}>Details</Link>
-                            <button onClick={()=>handleUserDelete(user._id)}>X</button>
+                            <Link to={`/users/${user._id}`}>Details</Link>
+                            <Link to={`/update/${user._id}`}>Edit</Link>
+                            <button onClick={() => handleUserDelete(user._id)}>X</button>
                         </p>)
                 }
             </div>
