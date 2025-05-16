@@ -20,6 +20,11 @@ const Users = () => {
         .then(res => res.json())
         .then(data =>{
             console.log('data in data base ' ,data)
+            // datar modde insert id ache mane data successfully added 
+            if(data.insertedId){
+                alert('data added successfully');
+                e.target.reset();
+            }
         })
     }
     return (
