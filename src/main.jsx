@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router";
 import Mainlayout from './layout/Mainlayout.jsx';
+import UserDetails from './component/UserDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
     path: "/",
    Component:Mainlayout,
    children:[
-    {index:true,Component:App}
+    {index:true,Component:App},
+    {
+      path:'/users/:id',
+     loader:({params}) => fetch(`http://localhost:3000/users/${params.id}`),
+      Component:UserDetails,
+    }
    ]
   },
 ]);
