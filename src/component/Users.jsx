@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 
-const Users = () => {
+const Users = ({userPromise}) => {
+     const initalUser  = use(userPromise);
+     const [users,setUsers] = useState(initalUser);
+     console.log(initalUser);
+
+
     const handleUsers = e =>{
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
-        const user = {name,email}
-        console.log(user)
+        const newUser = {name,email}
+        // console.log(newUser)
 
         // crate user in database 
         fetch('http://localhost:3000/users',{
@@ -15,13 +20,18 @@ const Users = () => {
             headers:{
                 'content-type':'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(newUser)
         })
         .then(res => res.json())
         .then(data =>{
+
             console.log('data in data base ' ,data)
             // datar modde insert id ache mane data successfully added 
             if(data.insertedId){
+                newUser._id = data.insertedId;
+                const newUsers = [...users,newUser]
+                setUsers(newUsers)
+
                 alert('data added successfully');
                 e.target.reset();
             }
@@ -39,6 +49,11 @@ const Users = () => {
                     <input type="submit" value="Submit" />
                 </form>
 
+            </div>
+            <div>
+                {
+                    users.map (user => <p key={user._id}>{user.name}:{user.email}</p>)
+                }
             </div>
         </div>
     );
