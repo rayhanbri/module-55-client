@@ -1,0 +1,19 @@
+//
+New Mongobd account khulle network access e velcel api ta diye dite hoi
+
+Read Mongo Db docs .
+
+
+Full Module Guide line ----
+1.Connect Mongodb in server 
+2.Users.jsx in component get data from the from and create post for "/Users" 
+
+3.get api for /users and fetch data in users.
+
+4.set data in state after posting to mongodb. delete button added. and create an api for delete users. 
+
+5. delete data from ui through state .
+
+6.get single use in the server,load data with loader , 
+
+
