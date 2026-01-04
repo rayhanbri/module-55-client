@@ -14,6 +14,7 @@ Full Module Guide line ----
 
 5. delete data from ui through state .
 
-6.get single use in the server,load data with loader , 
+6.get single use in the server,load data with loader for user details, 
 
+7.edit added in users, update user loader in main.jsx, update user in the backend .
 
