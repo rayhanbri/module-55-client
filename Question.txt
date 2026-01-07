@@ -1,0 +1,21 @@
+1.1.console log vs console.dir
+Module- 55 
+1.How to connect mongodb with server ? 
+1.1. How to fetch data  in app.jsx ? 
+2.How to create a post api ? Why two then use there ? 
+3.How to post data from frontend user.jsx ? 
+4.How add data in frontend without refresh  with inserted id? 
+3. How to create a get api for the users. 
+5.How create delete api in the server  ? 
+6.How to delete data from server. 
+7.How to delete data  from frontend and vanish it without refreshing ? deletedCount ? 
+8.How to show user details ? 
+9.How to update data in backend?
+
+
+// patch hocce data just choto ekta thing change korbo 
+    // put puro data jodi thake update koro na thakle create koro
+
+
+
+

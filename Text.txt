@@ -6,6 +6,7 @@ Read Mongo Db docs .
 
 Full Module Guide line ----
 1.Connect Mongodb in server 
+
 2.Users.jsx in component get data from the from and create post for "/Users" 
 
 3.get api for /users and fetch data in users.
@@ -17,4 +18,7 @@ Full Module Guide line ----
 6.get single use in the server,load data with loader for user details, 
 
 7.edit added in users, update user loader in main.jsx, update user in the backend .
+
+
+modnog db offilne module - 10 
 

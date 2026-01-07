@@ -16,16 +16,15 @@ const Users = ({ userPromise }) => {
         // console.log(newUser)
 
         // crate user in database 
-        fetch('http://localhost:3000/users', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
+        fetch('http://localhost:3000/users',{
+            method : "POST",
+            headers:{
+                'content-type': "application/json"
             },
-            body: JSON.stringify(newUser)
+            body:JSON.stringify(newUser)
         })
             .then(res => res.json())
             .then(data => {
-
                 console.log('data in data base ', data)
                 // datar modde insert id ache mane data successfully added 
                 if (data.insertedId) {
@@ -33,7 +32,7 @@ const Users = ({ userPromise }) => {
                     const newUsers = [...users, newUser]
                     setUsers(newUsers)
 
-                    alert('data added successfully');
+                    // alert('data added successfully');
                     e.target.reset();
                 }
             })
